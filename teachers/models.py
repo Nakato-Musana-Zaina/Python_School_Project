@@ -18,4 +18,4 @@ class Teacher(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return f'{self.teacher_description}'
+        return f'{self.teacher_name}'

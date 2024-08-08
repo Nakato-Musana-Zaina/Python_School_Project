@@ -18,4 +18,4 @@ class ClassRoom(models.Model):
 
 
     def __str__(self):
-        return f'{self.class_capacity} {self.class_id}'
+        return f'{self.class_name}'

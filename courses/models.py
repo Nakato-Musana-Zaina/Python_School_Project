@@ -17,4 +17,4 @@ class Courses(models.Model):
     objects = models.Manager()
     
     def __str__(self):
-         return f'{self.courses_assignment} {self.courses_department}'
+         return f'{self.courses_name}'
