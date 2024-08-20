@@ -1,24 +1,25 @@
-
+# classperiods/models.py
 from django.db import models
 from courses.models import Courses
 from teachers.models import Teacher
 from classes.models import ClassRoom
 
 class ClassPeriod(models.Model):
-    course = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    classroom = models.ForeignKey(ClassRoom, on_delete=models.CASCADE)
+    DAY_OF_WEEK_CHOICES = [
+        ('Monday', 'Monday'),
+        ('Tuesday', 'Tuesday'),
+        ('Wednesday', 'Wednesday'),
+        ('Thursday', 'Thursday'),
+        ('Friday', 'Friday'),
+        ('Saturday', 'Saturday'),
+        ('Sunday', 'Sunday'),
+    ]
+    courses = models.ManyToManyField('courses.Courses', related_name='classes')
     start_time = models.TimeField()
     end_time = models.TimeField()
-    day_of_week = models.CharField(max_length=10)  
-
-
+    day_of_week = models.CharField(max_length=9, choices=DAY_OF_WEEK_CHOICES)
 
     objects = models.Manager()
 
     def __str__(self):
-        return f'{self.course} with {self.teacher} in {self.classroom} on {self.day_of_week}'
-
-
-
-
+        return f'The class is on {self.day_of_week}'
